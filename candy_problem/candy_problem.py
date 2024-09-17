@@ -10,12 +10,12 @@ friend_favorites = [
     ["Carlie", ["nerds", "sour patch kids", "laffy taffy" ]]
 ]
 '''
-# friend_favorites = [
-#     ["Sally", ["lollipop", "bubble gum", "laffy taffy" ]],
-#     ["Bob", ["milky way", "licorice", "lollipop" ]],
-#     ["Arlene", ["chocolate bar", "milky way", "laffy taffy" ]],
-#     ["Carlie", ["nerds", "sour patch kids", "laffy taffy" ]]
-# ]
+friend_favorites = [
+    ["Sally", ["lollipop", "bubble gum", "laffy taffy" ]],
+    ["Bob", ["milky way", "licorice", "lollipop" ]],
+    ["Arlene", ["chocolate bar", "milky way", "laffy taffy" ]],
+    ["Carlie", ["nerds", "sour patch kids", "laffy taffy" ]]
+]
 
 
 def get_friends_favorite_candy_count(favorites):
@@ -49,11 +49,13 @@ def create_new_candy_data_structure(data):
 
     for candies in favorite_candies.keys():
         for student in data:
-            if candies in student[1]:
-                candy_pairs[candies] = student[0]
+            if candies in student[1] and candies not in candy_pairs.keys():
+                candy_pairs[candies] = [student[0]]
+            elif candies in candy_pairs.keys() and candies in student[1]:
+                candy_pairs[candies] += [student[0]]
     return candy_pairs
 
-   
+print(create_new_candy_data_structure(friend_favorites))
                     
 
 
